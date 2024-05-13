@@ -8,5 +8,9 @@ const obj = {
 //   c: 3,
 // };
 
+// Object.create
+const ob = Object.create({ c: 333 });
 // Prototype を見るための関数
 console.log(Object.getPrototypeOf(obj));
+
+console.log(ob);
