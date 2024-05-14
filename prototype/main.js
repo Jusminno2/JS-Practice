@@ -122,7 +122,7 @@ class User {
     return this.#gender;
   }
 }
-console.log(new User('Yodhiki', 29));
+// console.log(new User('Yodhiki', 29));
 
 /*--------------------------------------------------------------------------------------------
   クラスの継承について
@@ -134,6 +134,12 @@ console.log(new User('Yodhiki', 29));
   sub class が呼ばれたとき
   １．まずsuperの上の部分が実行される
   ２．super が呼び出されると、親のフィールド->子のフィールド
+
+  super()とsuper.(dot)は別物
+  ・super()はconstructorの中でのみ使用可能
+  ・super. は省略記法の中であればどこでもOK
+  ・super. はsetterとしても使うことができる
+    ・super.eat = this.eat
 -----------------------------------------------------------------------------------------------*/
 // super class
 class Animal {
@@ -142,7 +148,9 @@ class Animal {
     // this = Object.create(Animal.prototype); <= super()を呼び出したときにmake
     this.age = age;
   }
-  eat() {}
+  eat() {
+    console.log('eat from Animal.');
+  }
 }
 /*
   <sub class>
@@ -155,7 +163,13 @@ class Bird extends Animal {
     super(age);
     this.name = name;
   }
+  eat() {
+    super.eat(); //eat from Animal を引き継ぎ、追加できる
+    console.log('eat from bird');
+  }
   fly() {}
 }
 
-bird = new Bird(3);
+const bird = new Bird(3, 'pi');
+console.log(bird);
+bird.eat(); // eat from bird
