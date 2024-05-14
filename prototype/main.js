@@ -78,3 +78,27 @@ const car1 = new CarConstructor('Toyota', 300000);
 const car2 = new CarConstructor('Tesla', 20000);
 const car3 = new CarConstructor('Honda', 81000);
 console.log(car1, car2, car3);
+
+//in演算子に似ているhasOwnProperty
+o = {
+  a: 1,
+};
+console.log(o);
+console.log(o.hasOwnProperty('a'));
+// console.log('a' in o);
+
+/*--------------------------------------------------------------------------------------
+  ES6以降で追加されたclass
+  ・メソッドを羅列するだけで"CarConstructor.prototype.greeting"みたいな挙動になる
+  ・constructorというメソッドの中だけは変数定義などができる
+  ・逆にconstructorの外では、メソッドの羅列しかできない
+  ・クラスの中身には、'use strict'モードが使用されている
+---------------------------------------------------------------------------------------*/
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  greeting() {}
+}
+console.dir(new User());
