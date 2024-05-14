@@ -23,3 +23,16 @@ sum(...nums); //しっかりと配列として返る
   もし、sum(nums)だったら、[[1,2,3,4]]となっちゃう
   ⇒スプレット構文はこれを解決
 */
+
+/*------------------------分割代入---------------------------------------------------------------*/
+const gen = [
+  'gen',
+  20,
+  'man',
+  ['music', 'travel'],
+  { first: 'geni', last: 'chin' },
+];
+//分割代入
+let [, , gender, [music, travel], { first: firstName /*keyも変えれちゃう*/ }] =
+  gen;
+console.log(gender, music, travel, firstName);
