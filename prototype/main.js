@@ -123,3 +123,39 @@ class User {
   }
 }
 console.log(new User('Yodhiki', 29));
+
+/*--------------------------------------------------------------------------------------------
+  クラスの継承について
+  ・thisはsuperのあとに使ってね！
+  ・sub class で constructor 使うときは、必ずsuper()を使えよ！
+  ・親クラスから子クラスを呼び出せる
+  ・プライベートフィールドは継承できない
+
+  sub class が呼ばれたとき
+  １．まずsuperの上の部分が実行される
+  ２．super が呼び出されると、親のフィールド->子のフィールド
+-----------------------------------------------------------------------------------------------*/
+// super class
+class Animal {
+  age = 0;
+  constructor(age) {
+    // this = Object.create(Animal.prototype); <= super()を呼び出したときにmake
+    this.age = age;
+  }
+  eat() {}
+}
+/*
+  <sub class>
+  Bird.__proto__ = Animal;
+  Bird.prototype.__proto__ = Animal.prototype;
+*/
+class Bird extends Animal {
+  name = 'pi';
+  constructor(age, name) {
+    super(age);
+    this.name = name;
+  }
+  fly() {}
+}
+
+bird = new Bird(3);
