@@ -173,3 +173,55 @@ class Bird extends Animal {
 const bird = new Bird(3, 'pi');
 console.log(bird);
 bird.eat(); // eat from bird
+
+/*
+  【衝撃の事実】コンポジション、継承に勝る
+  １．コンポジションにて、BirdはAnimalの要素も持っているという考え方
+  ２．継承においては、Bird=Animal という考え方
+*/
+class Animals {
+  age = 0;
+  constructor(age) {
+    // this = Object.create(Animal.prototype); <= super()を呼び出したときにmake
+    this.age = age;
+  }
+  eat() {
+    console.log('eat from Animal.');
+  }
+  static foo() {
+    console.log('foo');
+  }
+}
+
+class Birds {
+  name = 'bird';
+  constructor(age, name) {
+    // super(age);
+    this.animal = new Animals(age);
+    this.name = name;
+  }
+  eat() {
+    this.animal.eat(); //eat from Animal を引き継ぎ、追加できる
+    console.log('eat from bird');
+  }
+  static fly() {
+    Animals.foo();
+  }
+}
+const birds = new Birds(3, 'pi');
+// animalのメソッドも使えちゃう
+console.log(birds.animal.age);
+//birdのメソッドも使えちゃう
+birds.eat();
+
+/*--------------instanceof について-------------------------------------------------- */
+class Human {}
+const human = new Human();
+class Japanese extends Human {}
+const japanese = new Japanese();
+// japanese は Human のインスタンスかどうかの判定
+// Car.prototype === taxi.__proto__
+// Car.prototype === taxi.__proto__.__proto__
+// Car.prototype === taxi.__proto__.__proto__.__proto__
+// のようにチェーンをたどる作業を繰り返してどこにもなかったらfalseを返す
+console.log(japanese instanceof Human);
