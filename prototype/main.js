@@ -93,12 +93,33 @@ console.log(o.hasOwnProperty('a'));
   ・constructorというメソッドの中だけは変数定義などができる
   ・逆にconstructorの外では、メソッドの羅列しかできない
   ・クラスの中身には、'use strict'モードが使用されている
+  ・コロンは使えないが、イコールは使える
 ---------------------------------------------------------------------------------------*/
 class User {
+  // フィールド宣言 => 先にコンストラクターにthisとしてはいる
+  id = 120;
+  /*
+     ・プライベートフィールド化=> "#"を先頭につける
+     ・必ずクラスのフィールド（constructor）の外につける
+     ・クラス内部からしかアクセスできない
+  */
+  #gender = 'man';
   constructor(name, age) {
+    // Object.defineProperty(this, 'id', {})
     this.name = name;
     this.age = age;
+    this.#gender = gender;
   }
-  greeting() {}
+  // フィールド宣言
+  birthday = '1991/05/03';
+  // getter settter の簡単設定
+  get greeting() {}
+  set post(newValue) {}
+  /* prototype の前につくstatic, getter setter にもつけられる
+  static greeteing() {}
+  */
+  private() {
+    return this.#gender;
+  }
 }
-console.dir(new User());
+console.log(new User('Yodhiki', 29));
