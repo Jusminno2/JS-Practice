@@ -36,3 +36,30 @@ const gen = [
 let [, , gender, [music, travel], { first: firstName /*keyも変えれちゃう*/ }] =
   gen;
 console.log(gender, music, travel, firstName);
+
+/*----------------------------------------------------------------------------------------------------------
+  Array.prototype
+    ・push:末尾に追加
+    ・unshift:先頭に追加⇒全部一つずつずらすから遅い
+    ・pop:末尾から削除
+    ・shift:逆pop⇒全部一つずつずらすから遅い
+-----------------------------------------------------------------------------------------------------------*/
+let items = [0, 1, 2];
+items.pop();
+console.log(items);
+
+/*-------------------オブジェクトとしてどう動くの？編-------------------------------------------------------*/
+arrayLikeObject = {
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  length: 4,
+};
+// length で指定した長さしかないと判断して（今回なら1:1まで）、次に指定した値を追加しlength+1
+Array.prototype.push.call(arrayLikeObject, 5);
+console.log(arrayLikeObject);
+//配列のようなものから、本物の配列を作る
+//厳密にはarrayLikeObjectを参考にして、新たな配列を作る
+const realArray = Array.from(arrayLikeObject);
+console.log(realArray, arrayLikeObject);
