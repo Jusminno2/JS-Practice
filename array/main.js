@@ -86,6 +86,7 @@ items.sort();
 console.log(items);
 
 /*--------------------------配列は変えないメソッド ----------------------------------------------------*/
+/*---------------------返り値を取るため、変数定義が必要------------------------------------------------------*/
 items = [0, 1, 2, 3, 4];
 // itemsには、変更を加えずに返り値だけを取るメソッド
 let result = items.slice(2, 4); //[2,3]
@@ -108,3 +109,35 @@ result = items.indexOf('banana', 2);
 result_2 = items.includes('banana', 2);
 console.log(result);
 console.log(result_2);
+
+// map関数：配列の要素ごとに関数の内容を実行して新たな配列を作る関数
+items = [0, 1, 2];
+result = items.map(item => {
+  return item * 10;
+});
+console.log(result); //[0,10,20]
+
+// 関数の条件文でtrueのものだけが返るfilter
+items = [0, 1, 2, 3, 4, 5, 6];
+result = items.filter(item => {
+  return item % 2 === 0; //偶数のものだけが配列として返る
+});
+console.log(result); //[0,2,4,6]
+
+// find 関数
+const ary = [3, 4, 5, 6];
+const results = ary.find(value => {
+  return value > 5;
+});
+console.log(results); // 6
+
+// かつのeveryまたはのsome
+items = [0, 1, 2];
+result = items.some(item => {
+  return item < 2;
+});
+result_2 = items.every(item => {
+  return item < 2;
+});
+console.log(result); //true
+console.log(result_2); //false
