@@ -47,3 +47,11 @@ console.log(result);
     6: text
     length: 7
 */
+
+/*------------------------------------最頻出：querySelector----------------------------------------------*/
+// querySelectorはdocument-interfaceとelement-interfaceどちらでも使える
+// 第一引数はCSSセレクター
+// 上から探索していって、最初にマッチしたものの要素だけを返す
+result = document.head.querySelector('p'); //null
+result = document.querySelector('#title');
+console.log(result); //<h1 id="title">Document</h1>
