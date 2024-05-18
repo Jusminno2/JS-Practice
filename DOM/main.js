@@ -148,3 +148,7 @@ console.dir(result);
 // 積極的にクラスリストの方を使おうや
 document.querySelector('p').classList.add('text-yellow', 'bg-gold');
 document.querySelector('p').classList.remove('text-yellow');
+// styleを変更する方法は、キャメルケースで行う
+document.querySelector('p').style.backgroundColor = 'pink';
+// 必ず文字列で設定すること
+document.querySelector('p').style.width = '150px';
