@@ -110,3 +110,30 @@ document.querySelector('div').append('I have a pen.');
 // ｐタグという要素だけ取得する、文字列といった子孫ノードは追加しない
 let p3 = p2.cloneNode(true); //trueを入れたら子孫ノードまですべてコピー
 document.querySelector('div').append(p3);
+
+/*-----------------------------検索したノードの情報を取得する------------------------------------------*/
+result = document.body.nodeName;
+console.log(result); //BODY(大文字でかいてくれる)
+
+// 属性情報（class,id,その他諸々）
+result = document.body.attributes;
+console.log(result);
+/*
+  NamedNodeMap {0: id, 1: myattr, 2: class, id: id, myattr: myattr, class: class, length: 3}
+  0: id
+  1: myattr
+  2: class
+  class: class
+  id: id
+  myattr: myattr
+  length: 3
+  [[Prototype]]: NamedNodeMap
+*/
+
+// getAttribute 第一引数に属性名をいれるとその属性情報がわかる
+result = document.body.getAttribute('id');
+console.dir(result);
+// setAttribute 第一引数に属性名、第二引数に値
+document.body.setAttribute('id', '8020');
+result = document.body.attributes;
+console.dir(result);
