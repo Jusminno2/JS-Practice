@@ -55,3 +55,36 @@ console.log(result);
 result = document.head.querySelector('p'); //null
 result = document.querySelector('#title');
 console.log(result); //<h1 id="title">Document</h1>
+
+// getElementById('ID名')
+result = document.getElementById('title');
+console.log(result); //<h1 id="title">
+
+/*
+  Domを変更する方法
+  １．innerHTML･･･主に、setter（値を能動的に操作する）として使う。要素Elementsにしか使えない
+  ２．insertAdjacentHTML･･･ごっそり変えたくないときもあるやん。追加もしたいやん。
+  
+  ＊＊大注意＊＊
+  ・クロスサイトスクリプティング(XSS)には注意せよ！
+  ・変なURLを貼らせるな！
+  ・なぜ危険かというと、タグも入力できちゃうからだ！！！
+
+  =>textContentはセキュリティー対策に使えるよ！！！
+    ・タグが入力できないんだよ!!!
+*/
+
+// 一度指定したノードの子孫ノードをすべて削除し、ごっそり入れ替える
+document.body.innerHTML = '<h1>Welcome Aboard</h1><div>I am a Winner</div>';
+// クエセレとの組み合わせ。divだけ変えちゃう
+document.querySelector('div').innerHTML = 'I am a Loser';
+// 追加する方法＋=
+document.querySelector('div').innerHTML += '<p>I am 30 years old.</p>';
+// ごっそり変えたくないときもあるやん。追加もしたいやん。=> insertAdjacentHTML
+document
+  .querySelector('div')
+  .insertAdjacentHTML('beforeend', '<p>Hey! Are you happy now??</p>');
+
+// textContent をセッターとして使うと安心
+// document.body.querySelector('div').textContent =
+//   '<h1>Hey! Are you happy now?????</h1>'; //<h1>Hey! Are you happy now?????</h1>
