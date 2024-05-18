@@ -93,6 +93,8 @@ document
   Domを変更する方法 PART2 ~Nodeを作る編~
   1. createElement()
   2.append,prepend,after,before
+
+  **全く同じDOM要素は一つしか作れない**
 */
 // Step1-Nodeを作成する
 let p1 = document.createElement('p');
@@ -105,3 +107,6 @@ document.querySelector('div').append(p1);
 document.querySelector('div').append(p2);
 // XXS対策もできて、文字列を直接入力することもできる
 document.querySelector('div').append('I have a pen.');
+// ｐタグという要素だけ取得する、文字列といった子孫ノードは追加しない
+let p3 = p2.cloneNode(true); //trueを入れたら子孫ノードまですべてコピー
+document.querySelector('div').append(p3);
