@@ -61,7 +61,7 @@ result = document.getElementById('title');
 console.log(result); //<h1 id="title">
 
 /*
-  Domを変更する方法
+  Domを変更する方法 PART1
   １．innerHTML･･･主に、setter（値を能動的に操作する）として使う。要素Elementsにしか使えない
   ２．insertAdjacentHTML･･･ごっそり変えたくないときもあるやん。追加もしたいやん。
   
@@ -88,3 +88,20 @@ document
 // textContent をセッターとして使うと安心
 // document.body.querySelector('div').textContent =
 //   '<h1>Hey! Are you happy now?????</h1>'; //<h1>Hey! Are you happy now?????</h1>
+
+/*
+  Domを変更する方法 PART2 ~Nodeを作る編~
+  1. createElement()
+  2.append,prepend,after,before
+*/
+// Step1-Nodeを作成する
+let p1 = document.createElement('p');
+let p2 = document.createElement('p');
+p1.textContent = 'Today I do not feel like doing anything.';
+p2.textContent = 'I just wanna lay in my bed.';
+
+// Step2-NodeをDOMツリーに挿入する(append,prepend,before,after)
+document.querySelector('div').append(p1);
+document.querySelector('div').append(p2);
+// XXS対策もできて、文字列を直接入力することもできる
+document.querySelector('div').append('I have a pen.');
