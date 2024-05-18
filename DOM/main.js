@@ -137,3 +137,14 @@ console.dir(result);
 document.body.setAttribute('id', '8020');
 result = document.body.attributes;
 console.dir(result);
+
+/* ----------------------------------- classの操作 ---------------------------------------------------------------------------- */
+// ほとんど使わないCSSの変え方
+result = document.styleSheets;
+console.dir(result);
+
+// 基本的にはDOMを操作することでCSSを変更する
+// document.querySelector('p').className = 'text-yellow bg-silver';
+// 積極的にクラスリストの方を使おうや
+document.querySelector('p').classList.add('text-yellow', 'bg-gold');
+document.querySelector('p').classList.remove('text-yellow');
