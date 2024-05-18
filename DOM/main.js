@@ -152,3 +152,14 @@ document.querySelector('p').classList.remove('text-yellow');
 document.querySelector('p').style.backgroundColor = 'pink';
 // 必ず文字列で設定すること
 document.querySelector('p').style.width = '150px';
+// bodyにボーダーを指定する
+// document.body.style.border = '5px solid gray';
+
+/*
+  live と static 
+  ・live のオブジェクトは”常に最新の状態になっている”（ほとんどのオブジェクト）
+    ・値を変更したら、動的にプロパティが変更されている状態
+
+  ・static のオブジェクトは最新の状態には”なっていない”
+    ・getBoundingClientRect メソッドだけが、値が固定されたまま
+*/
