@@ -110,3 +110,17 @@ window.addEventListener(
   input from document in the bubbling phase
   input from window in the bubbling phase
 */
+
+// 滑らかなスクロール=>passive property
+document.documentElement.style.height = '1500px';
+window.addEventListener(
+  'wheel',
+  event => {
+    for (let i = 0; i < 1e9; i++);
+    console.log(event);
+  },
+  {
+    // passive: false, //カクつく
+    passive: true,
+  }
+);
