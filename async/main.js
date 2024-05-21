@@ -53,3 +53,9 @@ let promise = new Promise((resolve, reject) => {
   console.log('hello promise');
 });
 console.log(promise);
+
+/*
+  [[Prototype]]: Promise
+  [[PromiseState]]: "fulfilled"
+  [[PromiseResult]]: "hello"
+*/
