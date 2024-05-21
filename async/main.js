@@ -118,3 +118,40 @@ new Promise(resolve => resolve(1))
   .then(() => console.log('skip'))
   // throwはcatchで
   .catch(error => console.log(error.message));
+
+// 上のPromise内部構造は以下の通り
+/*
+  thenメソッドが呼ばれたときは以下の3つの挙動が起こる
+  １．返り値として返す用のPromiseオブジェクトを作成
+  ２．func2をnweFunc2に変更
+  ３．promiseFulfillReactionsをnewFunc2に変更
+
+  promise2: {
+    [[PromiseFulfilReactions]]: "pendeing"
+    [[PromiseFulfillReactions]]: [newFunc2]
+  }
+  let newFunc2 = (value) => {
+    try {
+      let result = func2(value);
+      resolve3(result)
+    } catch (error) {
+      reject3(error)
+    }
+  }
+*/
+promise = new Promise(resolve => resolve(1));
+let promise2 = promise.then(value => {
+  console.log(value);
+  return 2;
+});
+let func2 = value => {
+  console.log(value);
+  throw new Error(3);
+};
+let promise3 = promise2.then(func2);
+let promise4 = promise3
+  .catch(error => {
+    console.log(error.message);
+    throw new Error(4);
+  })
+  .catch(error => console.log(error.message));
