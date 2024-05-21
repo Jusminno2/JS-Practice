@@ -17,7 +17,7 @@
 
   （例）以下の処理でエラーがキャッチされずガチエラーになっちゃう
       ⇒setTimeout は制限が０秒でも他のコードが実行されたあとにしか実行されない
-      
+
     try{
       setTimeout(() => {
         throw new Error("error");
@@ -25,6 +25,8 @@
     }catch (error) {
       console.log(error);
     }
+
+    **C++のエラー（API）はトライキャッチできない**
 */
 window.addEventListener('click', e => {
   console.log(e);
@@ -38,3 +40,16 @@ window.addEventListener('click', e => {
     });
   }, 1000);
 });
+
+/*
+  Promise
+  ・Promiseは、new Promiseが作られた瞬間に処理を実行する
+  ・第一引数に、resolveオブジェクトを持つ
+  ・第二引数に、rejectオブジェクトを持つ
+  ・promiseは、オブジェクト[PromiseState],[promiseResult]を返す
+*/
+let promise = new Promise((resolve, reject) => {
+  resolve('hello');
+  console.log('hello promise');
+});
+console.log(promise);
