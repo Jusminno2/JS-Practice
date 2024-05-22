@@ -155,3 +155,59 @@ let promise4 = promise3
     throw new Error(4);
   })
   .catch(error => console.log(error.message));
+
+// WebAPIsをpromise化する方法=>ES2015以降のAPIはPromiseを返す
+/*
+navigator.mediaDevices
+  .getUserMedia({ video: true })
+  .then(value => {
+    console.log(value);
+  })
+  .catch(err => {
+    console.log('error', err.message);
+  })
+  // ネストが深くならないように一旦掃き出す
+  .then(() => {
+    return navigator.clipboard.readText();
+  })
+  .catch(err => {
+    console.log(err.message);
+  });
+*/
+
+/*
+  async, awaitを使って簡潔に非同期処理を作る
+*/
+let asyncFunc = async () => {
+  /*
+  return new Promise((resolve, reject) => {
+    try {
+      let result = func() <=async内で実行する関数のこと
+      resolve(result)
+    } catch (error) {
+      reject(error)
+    }
+  })
+  */
+  // return 'hello';
+  // throw new Error('error');
+
+  /*
+  await の内部で起こっていること
+  ⇒ Promise.resolve(1).then(onFullfilled, onRejected);
+  ⇒ async await は try catch を使う
+  ＊awaitは呼び出されたら、Promise.resolve(1).then(onFullfilled, onRejected);を行って、
+  　それから処理を中断して、スコープの外側に行く
+  ＊awaitはasyncとセットじゃないと使えない
+  */
+  let result = await 1;
+  console.log('await1', result);
+  result = await new Promise(resolve => {
+    setTimeout(() => {
+      resolve(2);
+    }, 1000);
+  });
+  console.log('await2', result);
+};
+let result = asyncFunc();
+console.log(result);
