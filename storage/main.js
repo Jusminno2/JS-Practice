@@ -14,3 +14,14 @@ console.log(result); // john
   ⇒ 基本はsessionStrageを使う
 */
 sessionStorage.setItem('name', 'John');
+
+/*
+  同じオリジンを持つもの、すなわちURLが等しい者同士であれば、タブが違っても変更が同期して変更される
+*/
+window.addEventListener('storage', event => {
+  console.log('storage event', event);
+});
+/* 
+  data の変更を検知できる
+  ⇒片方で、セッターを用いると、もう一つのタブでは変更を検知してくれる
+*/
