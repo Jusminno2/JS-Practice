@@ -17,6 +17,10 @@ sessionStorage.setItem('name', 'John');
 
 /*
   同じオリジンを持つもの、すなわちURLが等しい者同士であれば、タブが違っても変更が同期して変更される
+
+  一方でクッキーは、同じホスト間でデータを共有している
+  ・クッキーはhttpじゃないと見ることができない
+  ・クッキーは、ホスト番号さえあっていればタブとか関係なく保存して共有してくれる
 */
 window.addEventListener('storage', event => {
   console.log('storage event', event);
