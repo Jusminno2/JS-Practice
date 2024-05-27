@@ -207,7 +207,43 @@ let asyncFunc = async () => {
       resolve(2);
     }, 1000);
   });
-  console.log('await2', result);
+  // console.log('await2', result);
 };
 let result = asyncFunc();
-console.log(result);
+// console.log(result);
+
+/* for await of */
+promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('a');
+  }, 1000);
+});
+promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('b');
+  }, 2000);
+});
+promise3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('c');
+  }, 500);
+});
+let promises = [promise, promise2, promise3];
+// 順番を待ってくれる処理を記述
+/* 以下旧版
+(async () => {
+  for (const promise of promises) {
+    let result = await promise;
+    console.log(result);
+  }
+})
+*/
+
+let async_funcasync = async () => {
+  for await (const result of promises) {
+    // let result = await promise;
+    console.log(result);
+  }
+};
+let a = async_funcasync();
+console.log(a);
