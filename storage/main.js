@@ -29,3 +29,19 @@ window.addEventListener('storage', event => {
   data の変更を検知できる
   ⇒片方で、セッターを用いると、もう一つのタブでは変更を検知してくれる
 */
+
+// ここからクッキー
+document.cookie = 'name=John';
+document.cookie = 'id=12345678';
+result = document.cookie;
+console.log(result); //id=12345678; name=John
+
+// 一気にクッキーが表示されちゃうから、地道に一つずつ表示させる
+result = document.cookie;
+document.cookie.split(';').forEach(cookie => {
+  let [key, value] = cookie.split('=');
+  if (key === 'name') {
+    result = value;
+  }
+});
+console.log(result); //John
